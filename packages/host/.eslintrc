@@ -1,0 +1,98 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "no-tabs": 0,
+    "semi-style": [
+      "error",
+      "last"
+    ],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "never"
+    }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "max-len": [2, {
+      "code": 120,
+      "tabWidth": 2,
+      "ignoreComments": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreRegExpLiterals": true
+    }],
+    "arrow-parens": ["error", "as-needed"],
+    "no-var": "error",
+    "semi": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "prefer-const": "error",
+    "no-use-before-define": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/display-name": "off",
+    "react/prop-types": "off",
+    "react/jsx-first-prop-new-line": [
+      1,
+      "multiline"
+    ],
+    "react/jsx-max-props-per-line": [
+      1,
+      {
+        "maximum": {
+          "single": 1,
+          "multi": 1
+        }
+      }
+    ],
+    "react/jsx-no-duplicate-props": [1],
+    "react/jsx-closing-bracket-location": [1],
+    "react/jsx-wrap-multilines": [1, {
+      "return": "parens-new-line",
+      "prop": "parens-new-line"
+    }],
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": true,
+          "object": false
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ]
+  }
+}

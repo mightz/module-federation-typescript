@@ -1,0 +1,16 @@
+{
+  "name": "@mightz/module-federation-typescript",
+  "version": "1.0.0",
+  "description": "Example of using module federation with typescript",
+  "keywords": [
+    "module",
+    "federation",
+    "typescript"
+  ],
+  "author": "MightZ",
+  "license": "ISC",
+  "workspaces": [
+    "packages/host",
+    "packages/remote"
+  ]
+}
