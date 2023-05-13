@@ -1,5 +1,6 @@
 const common = require('./webpack.common.js');
 const { merge } = require('webpack-merge');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -9,4 +10,14 @@ module.exports = merge(common, {
     hot: true,
     historyApiFallback: true,
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: '../remote/dist/',
+          to: 'remote',
+        },
+      ],
+    }),
+  ],
 });

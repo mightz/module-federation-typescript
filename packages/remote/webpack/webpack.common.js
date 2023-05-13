@@ -1,6 +1,42 @@
 const { pathResolve, alias } = require('./webpack.utils');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+
+const dependencies = require("../package.json").dependencies;
+const {
+  'core-js': dependencyCoreJs,
+  ...sharedDependencies
+} = dependencies;
+
+const moduleName = 'moduleRemote';
+
+const federationConfig = {
+  name: moduleName,
+  library: {
+    type: "var",
+    name: moduleName
+  },
+  filename: "remoteEntry.js",
+  remotes: {},
+  exposes: {
+    '.': './src/module',
+  },
+  shared: {
+    ...sharedDependencies,
+    react: {
+      import: "react",
+      shareKey: "react",
+      shareScope: "default",
+      singleton: true,
+      requiredVersion: dependencies.react,
+    },
+    "react-dom": {
+      singleton: true,
+      requiredVersion: dependencies["react-dom"],
+    },
+  },
+};
 
 module.exports = {
   target: ['web', 'es5'],
@@ -55,5 +91,6 @@ module.exports = {
       filename: 'index.html',
       publicPath: '/',
     }),
+    new ModuleFederationPlugin(federationConfig),
   ]
 };

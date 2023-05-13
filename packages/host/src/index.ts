@@ -1,1 +1,2 @@
-alert('OK');
+import 'core-js';
+import ('@/bootstrap');
