@@ -16,7 +16,7 @@ const App: FC<Record<string, never>> = () => {
             variant='success'
             onDismiss={handleAlertDismiss}
             style={{
-              boxShadow: '4px 3px 2px rgba(0,0,0,.1)',
+              boxShadow: '4px 4px 2px rgba(0,0,0,.1)',
             }}
           >
             Success
