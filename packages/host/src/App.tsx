@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
-/* @ts-ignore */
-import { Alert } from 'moduleRemote';
+import { Alert } from 'module-remote';
 
 const App: FC<Record<string, never>> = () => {
   const [ isAlertExists, setIsAlertExist ] = useState<boolean>(true);

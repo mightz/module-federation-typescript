@@ -1,6 +1,7 @@
 const { pathResolve, alias } = require('./webpack.utils');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const pathsTransformer = require("ts-transform-paths").default;
 const { ModuleFederationPlugin } = require("webpack").container;
 
 const dependencies = require("../package.json").dependencies;
@@ -9,17 +10,18 @@ const {
   ...sharedDependencies
 } = dependencies;
 
-const moduleName = 'moduleHost';
+const moduleName = 'module-host';
+const moduleVarName = 'moduleHost';
 
 const federationConfig = {
   name: moduleName,
   library: {
     type: "var",
-    name: moduleName
+    name: moduleVarName
   },
   filename: "remoteEntry.js",
   remotes: {
-    moduleRemote: 'moduleRemote',
+    'module-remote': 'moduleRemote',
   },
   exposes: {},
   shared: {
@@ -59,6 +61,9 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
+        options: {
+          getCustomTransformers: () => pathsTransformer(),
+        },
       },
       {
         test: /\.m?js$/,
